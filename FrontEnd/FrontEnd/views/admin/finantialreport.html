@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FinancialReport</title>
+</head>
+<body allign="center">
+
+    <script type="text/javascript" src="../../js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="../../js/admin/finantialreport.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jspdf.min.js"></script>
+    <script>
+        function pdf()
+        {
+            var doc = new jsPDF();
+            var elementHTML = $('#contnet').html();
+            var specialElementHandlers = {
+            '#elementH': function (element, renderer) {
+            return true;
+        }
+        };
+        doc.fromHTML(elementHTML, 50, 30, {
+    'width': 100,
+    'elementHandlers': specialElementHandlers
+});
+
+// Save the PDF
+doc.save('sample-document.pdf');
+        }
+    </script>
+     
+    <div id="contnet">
+        <h1 style="text-align:center">School Management System</h1>
+    <h2 style="text-align:center">Financial Report</h2>
+    <h2 style="text-align:center">Monthly Expense Report</h2>
+    <br />
+
+    <table align="center" border="1" cellpadding="10"  cellspacing="8" width="40%">
+
+        <tr>
+            <th style="text-align:center"><span style="font-size:20px">Category</span></th>
+            <th style="text-align:center"><span style="font-size:20px">Value</span></th>
+        </tr>
+
+        <tr>
+            <td style="text-align:center">Total Number of Students</td>
+            <td style="text-align:center">
+            	<label id="student_count"></label>
+               <!--  @TempData["student_count"] -->
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="text-align:center">Student Fee Total</td>
+            <td style="text-align:center">
+            	<label id="studentfee_total" for="studentfee_total"></label>
+                <!-- @TempData["studentfee_total"] -->
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="text-align:center">Total Number of Teacher</td>
+            <td style="text-align:center">
+                <!-- @TempData["teacher_count"] -->
+                <label id="teacher_count" for="teacher_count"></label>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="text-align:center">Teacher Salary Total</td>
+            <td style="text-align:center">
+                <!-- @TempData["teachersalary_total"] -->
+                <label id="teachersalry_total" for="teachersalary_total"></label>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="text-align: center"><b>Total Income</b></td>
+            <td style="text-align: center">
+                <!-- <b>@TempData["account_total"]</b> -->
+                <label id="account_total" for="account_total"></label>
+            </td>
+        </tr>
+        
+
+    </table>
+    <br />
+    <br />
+
+    </div>
+
+    <button onclick="pdf()" style="margin-left: 700px;"><h3>Print</h3></button>
+    
+    <a href="admindashboard.html" style="margin-left: 800px; margin-top: 300px;">Back</a>
+    
+    
+</body>
+</html>
+
+
+
